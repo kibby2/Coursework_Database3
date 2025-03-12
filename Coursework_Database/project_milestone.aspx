@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title>Project & Milestone</title>
 </head>
 <body>
+    <uc:navigation runat="server" />
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT p.*, m.milestone_ID, m.milestonename
@@ -14,7 +16,8 @@ FROM projects p
 JOIN milestones m ON m.project_id = p.project_id
 WHERE p.project_id = :projects
 ORDER BY p.project_id, m.milestone_id
-" OnSelecting="SqlDataSource1_Selecting">
+"
+                OnSelecting="SqlDataSource1_Selecting">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="projects" PropertyName="SelectedValue" />
                 </SelectParameters>

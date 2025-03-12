@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title>Subtask Details</title>
 </head>
 <body>
+    <uc:navigation runat="server" />
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM &quot;SUBTASKS&quot; WHERE &quot;SUBTASK_ID&quot; = :SUBTASK_ID" InsertCommand="INSERT INTO &quot;SUBTASKS&quot; (&quot;SUBTASK_ID&quot;, &quot;SUBTASKNAME&quot;, &quot;SUBTASK_STARTDATE&quot;, &quot;SUBTASK_ENDDATE&quot;, &quot;SUBTASKSTATUS&quot;, &quot;TASK_ID&quot;) VALUES (:SUBTASK_ID, :SUBTASKNAME, :SUBTASK_STARTDATE, :SUBTASK_ENDDATE, :SUBTASKSTATUS, :TASK_ID)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;SUBTASKS&quot;" UpdateCommand="UPDATE &quot;SUBTASKS&quot; SET &quot;SUBTASKNAME&quot; = :SUBTASKNAME, &quot;SUBTASK_STARTDATE&quot; = :SUBTASK_STARTDATE, &quot;SUBTASK_ENDDATE&quot; = :SUBTASK_ENDDATE, &quot;SUBTASKSTATUS&quot; = :SUBTASKSTATUS, &quot;TASK_ID&quot; = :TASK_ID WHERE &quot;SUBTASK_ID&quot; = :SUBTASK_ID">

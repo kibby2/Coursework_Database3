@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title></title>
 </head>
 <body>
+    <uc:navigation runat="server" />
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM &quot;PROJECTS&quot; WHERE &quot;PROJECT_ID&quot; = :PROJECT_ID" InsertCommand="INSERT INTO &quot;PROJECTS&quot; (&quot;PROJECT_ID&quot;, &quot;PROJECTNAME&quot;, &quot;PROJECTSTARTDATE&quot;, &quot;PROJECTENDDATE&quot;, &quot;PROJECTDESCRIPTION&quot;, &quot;PROJECTSTATUS&quot;) VALUES (:PROJECT_ID, :PROJECTNAME, :PROJECTSTARTDATE, :PROJECTENDDATE, :PROJECTDESCRIPTION, :PROJECTSTATUS)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;PROJECTS&quot;" UpdateCommand="UPDATE &quot;PROJECTS&quot; SET &quot;PROJECTNAME&quot; = :PROJECTNAME, &quot;PROJECTSTARTDATE&quot; = :PROJECTSTARTDATE, &quot;PROJECTENDDATE&quot; = :PROJECTENDDATE, &quot;PROJECTDESCRIPTION&quot; = :PROJECTDESCRIPTION, &quot;PROJECTSTATUS&quot; = :PROJECTSTATUS WHERE &quot;PROJECT_ID&quot; = :PROJECT_ID">
@@ -83,11 +85,12 @@
                     PROJECTSTATUS:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTSTATUS" DataValueField="PROJECTSTATUS" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" SelectedValue='<%# Bind("PROJECTSTATUS") %>'>
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECTSTATUS&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
-&nbsp;<br />&nbsp;<asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                    &nbsp;<br />
+                    &nbsp;<asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                     &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </InsertItemTemplate>
                 <ItemTemplate>
-                   <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                    <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>
             </asp:FormView>
         </div>

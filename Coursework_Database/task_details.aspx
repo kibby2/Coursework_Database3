@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title>Task Details</title>
 </head>
 <body>
+    <uc:navigation runat="server" />
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM &quot;TASKS&quot; WHERE &quot;TASK_ID&quot; = :TASK_ID" InsertCommand="INSERT INTO &quot;TASKS&quot; (&quot;TASK_ID&quot;, &quot;TASKNAME&quot;, &quot;TASKSTARTDATE&quot;, &quot;TASKENDDATE&quot;, &quot;TASKSTATUS&quot;, &quot;PROJECT_ID&quot;) VALUES (:TASK_ID, :TASKNAME, :TASKSTARTDATE, :TASKENDDATE, :TASKSTATUS, :PROJECT_ID)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;TASKS&quot;" UpdateCommand="UPDATE &quot;TASKS&quot; SET &quot;TASKNAME&quot; = :TASKNAME, &quot;TASKSTARTDATE&quot; = :TASKSTARTDATE, &quot;TASKENDDATE&quot; = :TASKENDDATE, &quot;TASKSTATUS&quot; = :TASKSTATUS, &quot;PROJECT_ID&quot; = :PROJECT_ID WHERE &quot;TASK_ID&quot; = :TASK_ID">

@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="milestone_details.aspx" />
+    <Content Include="navigation.ascx" />
     <Content Include="project_details.aspx" />
     <Content Include="project_milestone.aspx" />
     <Content Include="subtask_details.aspx" />
@@ -84,6 +85,13 @@
     </Compile>
     <Compile Include="milestone_details.aspx.designer.cs">
       <DependentUpon>milestone_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="navigation.ascx.cs">
+      <DependentUpon>navigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="navigation.ascx.designer.cs">
+      <DependentUpon>navigation.ascx</DependentUpon>
     </Compile>
     <Compile Include="project_details.aspx.cs">
       <DependentUpon>project_details.aspx</DependentUpon>

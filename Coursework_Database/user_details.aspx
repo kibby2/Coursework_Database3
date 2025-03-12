@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title>Subtask Details</title>
 </head>
 <body>
+    <uc:navigation runat="server" />
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM &quot;USERS&quot; WHERE &quot;USER_ID&quot; = :USER_ID" InsertCommand="INSERT INTO &quot;USERS&quot; (&quot;USER_ID&quot;, &quot;USERNAME&quot;, &quot;USERROLE&quot;, &quot;USEREMAIL&quot;, &quot;PHONENUMBER&quot;) VALUES (:USER_ID, :USERNAME, :USERROLE, :USEREMAIL, :PHONENUMBER)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;USERS&quot;" UpdateCommand="UPDATE &quot;USERS&quot; SET &quot;USERNAME&quot; = :USERNAME, &quot;USERROLE&quot; = :USERROLE, &quot;USEREMAIL&quot; = :USEREMAIL, &quot;PHONENUMBER&quot; = :PHONENUMBER WHERE &quot;USER_ID&quot; = :USER_ID">

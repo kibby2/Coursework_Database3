@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title>Milestone Details</title>
 </head>
 <body>
+    <uc:navigation runat="server" />
     <form id="form1" runat="server">
         <div style="height: 302px">
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM &quot;MILESTONES&quot; WHERE &quot;MILESTONE_ID&quot; = :MILESTONE_ID" InsertCommand="INSERT INTO &quot;MILESTONES&quot; (&quot;MILESTONE_ID&quot;, &quot;MILESTONENAME&quot;, &quot;MILESTONE_STARTDATE&quot;, &quot;MILESTONE_ENDDATE&quot;, &quot;PROJECT_ID&quot;, &quot;TASK_ID&quot;) VALUES (:MILESTONE_ID, :MILESTONENAME, :MILESTONE_STARTDATE, :MILESTONE_ENDDATE, :PROJECT_ID, :TASK_ID)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;MILESTONES&quot;" UpdateCommand="UPDATE &quot;MILESTONES&quot; SET &quot;MILESTONENAME&quot; = :MILESTONENAME, &quot;MILESTONE_STARTDATE&quot; = :MILESTONE_STARTDATE, &quot;MILESTONE_ENDDATE&quot; = :MILESTONE_ENDDATE, &quot;PROJECT_ID&quot; = :PROJECT_ID, &quot;TASK_ID&quot; = :TASK_ID WHERE &quot;MILESTONE_ID&quot; = :MILESTONE_ID">

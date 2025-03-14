@@ -13,5 +13,10 @@ namespace Coursework_Database
         {
 
         }
+
+        protected void Chart3_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

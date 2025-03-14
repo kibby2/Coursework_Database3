@@ -25,7 +25,7 @@ WHERE user_rank &lt;= 3 AND ranked_users.project_id = :projects
 ORDER BY ranked_users.total_completed_tasks DESC, ranked_users.user_id
 
 
-">
+" OnSelecting="SqlDataSource1_Selecting">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="projects" PropertyName="SelectedValue" />
                 </SelectParameters>

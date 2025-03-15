@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Coursework_Database.dashboard" %>
 
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <!DOCTYPE html>
 
@@ -8,13 +8,30 @@
 <%@ Register Src="~/navigation.ascx" TagPrefix="uc" TagName="navigation" %>
 <head runat="server">
     <title>Dashboard</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        div {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <uc:navigation runat="server" />
+        <uc:navigation runat="server" />
         <div>
         </div>
+        <h1>Dashboard</h1>
         <asp:Chart ID="Chart2" runat="server" DataSourceID="SqlDataSource2" Width="571px">
+            <Titles>
+                <asp:Title Name="ChartTitle" Text="Top 5 Users by Completed Tasks" Font="Arial, 14pt, style=Bold" />
+            </Titles>
             <Series>
                 <asp:Series Name="Series1" XValueMember="XVALUE" YValueMembers="YVALUE">
                 </asp:Series>
@@ -40,6 +57,9 @@ WHERE ROWNUM &lt;= 5
 
 "></asp:SqlDataSource>
         <asp:Chart ID="Chart3" runat="server" DataSourceID="SqlDataSource3" Height="355px" OnLoad="Chart3_Load" Width="647px">
+            <Titles>
+                <asp:Title Name="ChartTitle" Text="Proportion of Resource Types" Font="Arial, 14pt, style=Bold" />
+            </Titles>
             <Series>
                 <asp:Series ChartType="Pie" Name="Series1" XValueMember="XVALUE" YValueMembers="YVALUE">
                 </asp:Series>
@@ -50,6 +70,7 @@ WHERE ROWNUM &lt;= 5
             </ChartAreas>
         </asp:Chart>
         <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT RESOURCETYPE AS XValue, COUNT(*) AS YValue
+
 FROM RESOURCES
 GROUP BY RESOURCETYPE
 ORDER BY YValue DESC
@@ -61,7 +82,23 @@ ORDER BY YValue DESC
 
 
 "></asp:SqlDataSource>
+        <asp:Chart ID="Chart5" runat="server" DataSourceID="SqlDataSource5" Width="469px">
+            <Titles>
+                <asp:Title Name="ChartTitle" Text="Projects with top number of Tasks" Font="Arial, 14pt, style=Bold" />
+            </Titles>
+            <Series>
+                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series1">
+                </asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1">
+                </asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
         <asp:Chart ID="Chart4" runat="server" DataSourceID="SqlDataSource4" Width="653px">
+            <Titles>
+                <asp:Title Name="ChartTitle" Text="Proportion of different User Roles" Font="Arial, 14pt, style=Bold" />
+            </Titles>
             <Series>
                 <asp:Series ChartType="Doughnut" Name="Series1" XValueMember="XVALUE" YValueMembers="YVALUE">
                 </asp:Series>
@@ -86,16 +123,6 @@ WHERE ROWNUM &lt;= 5
 
 "></asp:SqlDataSource>
         <br />
-        <asp:Chart ID="Chart5" runat="server" DataSourceID="SqlDataSource5" Width="469px">
-            <Series>
-                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series1">
-                </asp:Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1">
-                </asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
     </form>
 </body>
 </html>

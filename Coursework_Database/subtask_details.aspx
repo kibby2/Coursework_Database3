@@ -37,8 +37,22 @@
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="SUBTASK_ID" HeaderText="SUBTASK_ID" ReadOnly="True" SortExpression="SUBTASK_ID" />
                     <asp:BoundField DataField="SUBTASKNAME" HeaderText="SUBTASKNAME" SortExpression="SUBTASKNAME" />
-                    <asp:BoundField DataField="SUBTASK_STARTDATE" HeaderText="SUBTASK_STARTDATE" SortExpression="SUBTASK_STARTDATE" />
-                    <asp:BoundField DataField="SUBTASK_ENDDATE" HeaderText="SUBTASK_ENDDATE" SortExpression="SUBTASK_ENDDATE" />
+                    <asp:TemplateField HeaderText="SUBTASK_STARTDATE" SortExpression="SUBTASK_STARTDATE">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("SUBTASK_STARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("SUBTASK_STARTDATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="SUBTASK_ENDDATE" SortExpression="SUBTASK_ENDDATE">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SUBTASK_ENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("SUBTASK_ENDDATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="SUBTASKSTATUS" HeaderText="SUBTASKSTATUS" SortExpression="SUBTASKSTATUS" />
                     <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" SortExpression="TASK_ID" />
                     <asp:TemplateField HeaderText="Task_Name">
@@ -81,10 +95,10 @@
                     <asp:TextBox ID="SUBTASKNAMETextBox" runat="server" Text='<%# Bind("SUBTASKNAME") %>' />
                     <br />
                     SUBTASK_STARTDATE:
-                    <asp:TextBox ID="SUBTASK_STARTDATETextBox" runat="server" Text='<%# Bind("SUBTASK_STARTDATE") %>' />
+                    <asp:TextBox ID="SUBTASK_STARTDATETextBox" runat="server" Text='<%# Bind("SUBTASK_STARTDATE") %>' TextMode="Date" />
                     <br />
                     SUBTASK_ENDDATE:
-                    <asp:TextBox ID="SUBTASK_ENDDATETextBox" runat="server" Text='<%# Bind("SUBTASK_ENDDATE") %>' />
+                    <asp:TextBox ID="SUBTASK_ENDDATETextBox" runat="server" Text='<%# Bind("SUBTASK_ENDDATE") %>' TextMode="Date" />
                     <br />
                     SUBTASKSTATUS:
                     <asp:TextBox ID="SUBTASKSTATUSTextBox" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>' />

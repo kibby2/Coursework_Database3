@@ -37,8 +37,22 @@
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" ReadOnly="True" SortExpression="TASK_ID" />
                     <asp:BoundField DataField="TASKNAME" HeaderText="TASKNAME" SortExpression="TASKNAME" />
-                    <asp:BoundField DataField="TASKSTARTDATE" HeaderText="TASKSTARTDATE" SortExpression="TASKSTARTDATE" />
-                    <asp:BoundField DataField="TASKENDDATE" HeaderText="TASKENDDATE" SortExpression="TASKENDDATE" />
+                    <asp:TemplateField HeaderText="TASKSTARTDATE" SortExpression="TASKSTARTDATE">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("TASKSTARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("TASKSTARTDATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="TASKENDDATE" SortExpression="TASKENDDATE">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("TASKENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("TASKENDDATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="TASKSTATUS" HeaderText="TASKSTATUS" SortExpression="TASKSTATUS" />
                     <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" SortExpression="PROJECT_ID" />
                     <asp:TemplateField HeaderText="Project_Title">
@@ -81,10 +95,10 @@
                     <asp:TextBox ID="TASKNAMETextBox" runat="server" Text='<%# Bind("TASKNAME") %>' />
                     <br />
                     TASKSTARTDATE:
-                    <asp:TextBox ID="TASKSTARTDATETextBox" runat="server" Text='<%# Bind("TASKSTARTDATE") %>' />
+                    <asp:TextBox ID="TASKSTARTDATETextBox" runat="server" Text='<%# Bind("TASKSTARTDATE") %>' TextMode="Date" />
                     <br />
                     TASKENDDATE:
-                    <asp:TextBox ID="TASKENDDATETextBox" runat="server" Text='<%# Bind("TASKENDDATE") %>' />
+                    <asp:TextBox ID="TASKENDDATETextBox" runat="server" Text='<%# Bind("TASKENDDATE") %>' TextMode="Date" />
                     <br />
                     TASKSTATUS:
                     <asp:TextBox ID="TASKSTATUSTextBox" runat="server" Text='<%# Bind("TASKSTATUS") %>' />

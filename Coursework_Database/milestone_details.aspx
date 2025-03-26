@@ -32,12 +32,27 @@
                     <asp:Parameter Name="MILESTONE_ID" Type="String" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="MILESTONE_ID" DataSourceID="SqlDataSource1" Style="margin-bottom: 26px">
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="MILESTONE_ID" DataSourceID="SqlDataSource1" Style="margin-bottom: 26px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                 <Columns>
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="MILESTONE_ID" HeaderText="MILESTONE_ID" ReadOnly="True" SortExpression="MILESTONE_ID" />
                     <asp:BoundField DataField="MILESTONENAME" HeaderText="MILESTONENAME" SortExpression="MILESTONENAME" />
-                    <asp:BoundField DataField="MILESTONE_STARTDATE" HeaderText="MILESTONE_STARTDATE" SortExpression="MILESTONE_STARTDATE" />
-                    <asp:BoundField DataField="MILESTONE_ENDDATE" HeaderText="MILESTONE_ENDDATE" SortExpression="MILESTONE_ENDDATE" />
+                    <asp:TemplateField HeaderText="MILESTONE_STARTDATE" SortExpression="MILESTONE_STARTDATE">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" Text='<%# Bind("MILESTONE_STARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("MILESTONE_STARTDATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="MILESTONE_ENDDATE" SortExpression="MILESTONE_ENDDATE">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("MILESTONE_ENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("MILESTONE_ENDDATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" SortExpression="PROJECT_ID" />
                     <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" SortExpression="TASK_ID" />
                     <asp:TemplateField HeaderText="Project_Name">
@@ -81,30 +96,31 @@
                 </EditItemTemplate>
                 <InsertItemTemplate>
                     MILESTONE_ID:
-                    <asp:TextBox ID="MILESTONE_IDTextBox" runat="server" Text='<%# Bind("MILESTONE_ID") %>' />
+    <asp:TextBox ID="MILESTONE_IDTextBox" runat="server" Text='<%# Bind("MILESTONE_ID") %>' />
                     <br />
                     MILESTONENAME:
-                    <asp:TextBox ID="MILESTONENAMETextBox" runat="server" Text='<%# Bind("MILESTONENAME") %>' />
+    <asp:TextBox ID="MILESTONENAMETextBox" runat="server" Text='<%# Bind("MILESTONENAME") %>' />
                     <br />
                     MILESTONE_STARTDATE:
-                    <asp:TextBox ID="MILESTONE_STARTDATETextBox" runat="server" Text='<%# Bind("MILESTONE_STARTDATE") %>' />
+    <asp:TextBox ID="MILESTONE_STARTDATETextBox" runat="server" Text='<%# Bind("MILESTONE_STARTDATE") %>' TextMode="Date" />
                     <br />
                     MILESTONE_ENDDATE:
-                    <asp:TextBox ID="MILESTONE_ENDDATETextBox" runat="server" Text='<%# Bind("MILESTONE_ENDDATE") %>' />
+    <asp:TextBox ID="MILESTONE_ENDDATETextBox" runat="server" Text='<%# Bind("MILESTONE_ENDDATE") %>' TextMode="Date" />
                     <br />
                     PROJECT_ID:
-                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# Bind("PROJECT_ID") %>'>
-                    </asp:DropDownList>
+    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# Bind("PROJECT_ID") %>'>
+    </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECT_ID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
                     <br />
                     TASK_ID:
-                    <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# Bind("TASK_ID") %>'>
-                    </asp:DropDownList>
+    <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# Bind("TASK_ID") %>'>
+    </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;TASK_ID&quot;, &quot;TASKNAME&quot; FROM &quot;TASKS&quot;"></asp:SqlDataSource>
                     <br />
                     <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                     &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </InsertItemTemplate>
+
                 <ItemTemplate>
                     <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>

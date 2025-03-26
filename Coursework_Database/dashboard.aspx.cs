@@ -18,5 +18,15 @@ namespace Coursework_Database
         {
 
         }
+
+        protected void Chart5_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Chart4_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

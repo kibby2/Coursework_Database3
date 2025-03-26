@@ -12,17 +12,30 @@
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECT_ID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT user_id, project_id, total_completed_tasks
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT 
+    user_id, 
+    USERNAME, 
+    project_id, 
+    PROJECTNAME, 
+    total_completed_tasks
 FROM (
-    SELECT utp.project_id, utp.user_id, COUNT(t.task_id) AS total_completed_tasks,
-           RANK() OVER (PARTITION BY utp.project_id ORDER BY COUNT(t.task_id) DESC) AS user_rank
+    SELECT 
+        utp.project_id, 
+        utp.user_id, 
+        u.username, 
+        p.projectname,
+        COUNT(t.task_id) AS total_completed_tasks,
+        RANK() OVER (PARTITION BY utp.project_id ORDER BY COUNT(t.task_id) DESC) AS user_rank
     FROM user_task_project utp
     JOIN tasks t ON utp.task_id = t.task_id
-    WHERE t.taskstatus = 'Completed'  
-    GROUP BY utp.project_id, utp.user_id
+    JOIN users u ON utp.user_id = u.user_id
+    JOIN projects p ON utp.project_id = p.project_id
+    WHERE t.taskstatus = 'Completed'
+    GROUP BY utp.project_id, utp.user_id, u.username, p.projectname
 ) ranked_users
 WHERE user_rank &lt;= 3 AND ranked_users.project_id = :projects
 ORDER BY ranked_users.total_completed_tasks DESC, ranked_users.user_id
+
 
 
 " OnSelecting="SqlDataSource1_Selecting">
@@ -34,7 +47,7 @@ ORDER BY ranked_users.total_completed_tasks DESC, ranked_users.user_id
             </asp:DropDownList>
             <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1">
             </asp:GridView>
-        </div>
+        &nbsp;</div>
     </form>
 </body>
 </html>

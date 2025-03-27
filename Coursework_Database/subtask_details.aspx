@@ -36,25 +36,49 @@
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="SUBTASK_ID" HeaderText="SUBTASK_ID" ReadOnly="True" SortExpression="SUBTASK_ID" />
-                    <asp:BoundField DataField="SUBTASKNAME" HeaderText="SUBTASKNAME" SortExpression="SUBTASKNAME" />
+
+                    <asp:TemplateField HeaderText="SUBTASKNAME" SortExpression="SUBTASKNAME">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("SUBTASKNAME") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox3" ErrorMessage="SUBTASK NAME is required" ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("SUBTASKNAME") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="SUBTASK_STARTDATE" SortExpression="SUBTASK_STARTDATE">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("SUBTASK_STARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox1" ErrorMessage="SUBTASK START DATE is required" ForeColor="Red" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("SUBTASK_STARTDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="SUBTASK_ENDDATE" SortExpression="SUBTASK_ENDDATE">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SUBTASK_ENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox2" ErrorMessage="SUBTASK END DATE is required" ForeColor="Red" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("SUBTASK_ENDDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="SUBTASKSTATUS" HeaderText="SUBTASKSTATUS" SortExpression="SUBTASKSTATUS" />
+
+                    <asp:TemplateField HeaderText="SUBTASKSTATUS" SortExpression="SUBTASKSTATUS">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" ErrorMessage="SUBTASK STATUS is required" ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" SortExpression="TASK_ID" />
+
                     <asp:TemplateField HeaderText="Task_Name">
                         <ItemTemplate>
                             <asp:DropDownList Enabled="false" ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# Bind("TASK_ID") %>'>
@@ -64,6 +88,7 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+
             <asp:FormView ID="FormView1" runat="server" DataKeyNames="SUBTASK_ID" DataSourceID="SqlDataSource1">
                 <EditItemTemplate>
                     SUBTASK_ID:
@@ -89,28 +114,65 @@
                 </EditItemTemplate>
                 <InsertItemTemplate>
                     SUBTASK_ID:
-                    <asp:TextBox ID="SUBTASK_IDTextBox" runat="server" Text='<%# Bind("SUBTASK_ID") %>' />
+    <asp:TextBox ID="SUBTASK_IDTextBox" runat="server" Text='<%# Bind("SUBTASK_ID") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator1"
+                        runat="server"
+                        ControlToValidate="SUBTASK_IDTextBox"
+                        ErrorMessage="SUBTASK ID is required"
+                        ForeColor="Red" />
                     <br />
+
                     SUBTASKNAME:
-                    <asp:TextBox ID="SUBTASKNAMETextBox" runat="server" Text='<%# Bind("SUBTASKNAME") %>' />
+    <asp:TextBox ID="SUBTASKNAMETextBox" runat="server" Text='<%# Bind("SUBTASKNAME") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator2"
+                        runat="server"
+                        ControlToValidate="SUBTASKNAMETextBox"
+                        ErrorMessage="SUBTASK NAME is required"
+                        ForeColor="Red" />
                     <br />
+
                     SUBTASK_STARTDATE:
-                    <asp:TextBox ID="SUBTASK_STARTDATETextBox" runat="server" Text='<%# Bind("SUBTASK_STARTDATE") %>' TextMode="Date" />
+    <asp:TextBox ID="SUBTASK_STARTDATETextBox" runat="server" Text='<%# Bind("SUBTASK_STARTDATE") %>' TextMode="Date" />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator3"
+                        runat="server"
+                        ControlToValidate="SUBTASK_STARTDATETextBox"
+                        ErrorMessage="SUBTASK START DATE is required"
+                        ForeColor="Red" />
                     <br />
+
                     SUBTASK_ENDDATE:
-                    <asp:TextBox ID="SUBTASK_ENDDATETextBox" runat="server" Text='<%# Bind("SUBTASK_ENDDATE") %>' TextMode="Date" />
+    <asp:TextBox ID="SUBTASK_ENDDATETextBox" runat="server" Text='<%# Bind("SUBTASK_ENDDATE") %>' TextMode="Date" />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator4"
+                        runat="server"
+                        ControlToValidate="SUBTASK_ENDDATETextBox"
+                        ErrorMessage="SUBTASK END DATE is required"
+                        ForeColor="Red" />
                     <br />
+
                     SUBTASKSTATUS:
-                    <asp:TextBox ID="SUBTASKSTATUSTextBox" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>' />
+    <asp:TextBox ID="SUBTASKSTATUSTextBox" runat="server" Text='<%# Bind("SUBTASKSTATUS") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator5"
+                        runat="server"
+                        ControlToValidate="SUBTASKSTATUSTextBox"
+                        ErrorMessage="SUBTASK STATUS is required"
+                        ForeColor="Red" />
                     <br />
+
                     TASK_ID:
-                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# Bind("TASK_ID") %>'>
-                    </asp:DropDownList>
+    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# Bind("TASK_ID") %>'>
+    </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;TASK_ID&quot;, &quot;TASKNAME&quot; FROM &quot;TASKS&quot;"></asp:SqlDataSource>
                     <br />
+
                     <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                     &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </InsertItemTemplate>
+
                 <ItemTemplate>
                     <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>

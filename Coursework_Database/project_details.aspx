@@ -36,27 +36,59 @@
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" ReadOnly="True" SortExpression="PROJECT_ID" />
-                    <asp:BoundField DataField="PROJECTNAME" HeaderText="PROJECTNAME" SortExpression="PROJECTNAME" />
+
+                    <asp:TemplateField HeaderText="PROJECTNAME" SortExpression="PROJECTNAME">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("PROJECTNAME") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox3" ErrorMessage="PROJECT NAME is required." ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("PROJECTNAME") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="PROJECTSTARTDATE" SortExpression="PROJECTSTARTDATE">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("PROJECTSTARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="PROJECT START DATE is required." ForeColor="Red" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("PROJECTSTARTDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="PROJECTENDDATE" SortExpression="PROJECTENDDATE">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("PROJECTENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="PROJECT END DATE is required." ForeColor="Red" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("PROJECTENDDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="PROJECTDESCRIPTION" HeaderText="PROJECTDESCRIPTION" SortExpression="PROJECTDESCRIPTION" />
-                    <asp:BoundField DataField="PROJECTSTATUS" HeaderText="PROJECTSTATUS" SortExpression="PROJECTSTATUS" />
+
+                    <asp:TemplateField HeaderText="PROJECTDESCRIPTION" SortExpression="PROJECTDESCRIPTION">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("PROJECTDESCRIPTION") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" ErrorMessage="PROJECT DESCRIPTION is required." ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("PROJECTDESCRIPTION") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="PROJECTSTATUS" SortExpression="PROJECTSTATUS">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("PROJECTSTATUS") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TextBox5" ErrorMessage="PROJECT STATUS is required." ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("PROJECTSTATUS") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+
             <asp:FormView ID="FormView1" runat="server" DataKeyNames="PROJECT_ID" DataSourceID="SqlDataSource1">
                 <EditItemTemplate>
                     PROJECT_ID:
@@ -81,28 +113,40 @@
                     &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </EditItemTemplate>
                 <InsertItemTemplate>
-                    PROJECT_ID:
-                    <asp:TextBox ID="PROJECT_IDTextBox" runat="server" Text='<%# Bind("PROJECT_ID") %>' />
-                    <br />
-                    PROJECTNAME:
-                    <asp:TextBox ID="PROJECTNAMETextBox" runat="server" Text='<%# Bind("PROJECTNAME") %>' />
-                    <br />
-                    PROJECTSTARTDATE:
-                    <asp:TextBox ID="PROJECTSTARTDATETextBox" runat="server" Text='<%# Bind("PROJECTSTARTDATE","{0:MM-dd-yyyy}") %>' TextMode="Date" />
-                    <br />
-                    PROJECTENDDATE:
-                    <asp:TextBox ID="PROJECTENDDATETextBox" runat="server" Text='<%# Bind("PROJECTENDDATE","{0:MM-dd-yyyy}") %>' TextMode="Date" />
-                    <br />
-                    PROJECTDESCRIPTION:
-                    <asp:TextBox ID="PROJECTDESCRIPTIONTextBox" runat="server" Text='<%# Bind("PROJECTDESCRIPTION") %>' />
-                    <br />
-                    PROJECTSTATUS:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTSTATUS" DataValueField="PROJECTSTATUS" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" SelectedValue='<%# Bind("PROJECTSTATUS") %>'>
-                    </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECTSTATUS&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
-                    &nbsp;<br />
-                    &nbsp;<asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                </InsertItemTemplate>
+    PROJECT_ID:
+    <asp:TextBox ID="PROJECT_IDTextBox" runat="server" Text='<%# Bind("PROJECT_ID") %>' />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="PROJECT_IDTextBox" ErrorMessage="PROJECT ID is required." ForeColor="Red" />
+    <br />
+
+    PROJECTNAME:
+    <asp:TextBox ID="PROJECTNAMETextBox" runat="server" Text='<%# Bind("PROJECTNAME") %>' />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="PROJECTNAMETextBox" ErrorMessage="PROJECT NAME is required." ForeColor="Red" />
+    <br />
+
+    PROJECTSTARTDATE:
+    <asp:TextBox ID="PROJECTSTARTDATETextBox" runat="server" Text='<%# Bind("PROJECTSTARTDATE","{0:MM-dd-yyyy}") %>' TextMode="Date" />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="PROJECTSTARTDATETextBox" ErrorMessage="PROJECT START DATE is required." ForeColor="Red" />
+    <br />
+
+    PROJECTENDDATE:
+    <asp:TextBox ID="PROJECTENDDATETextBox" runat="server" Text='<%# Bind("PROJECTENDDATE","{0:MM-dd-yyyy}") %>' TextMode="Date" />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="PROJECTENDDATETextBox" ErrorMessage="PROJECT END DATE is required." ForeColor="Red" />
+    <br />
+
+    PROJECTDESCRIPTION:
+    <asp:TextBox ID="PROJECTDESCRIPTIONTextBox" runat="server" Text='<%# Bind("PROJECTDESCRIPTION") %>' />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="PROJECTDESCRIPTIONTextBox" ErrorMessage="PROJECT DESCRIPTION is required." ForeColor="Red" />
+    <br />
+
+    PROJECTSTATUS:
+    <asp:TextBox ID="PROJECTSTATUSTextBox" runat="server" Text='<%# Bind("PROJECTSTATUS") %>' />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="PROJECTSTATUSTextBox" ErrorMessage="PROJECT STATUS is required." ForeColor="Red" />
+    <br />
+    
+    &nbsp;<asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+</InsertItemTemplate>
+
                 <ItemTemplate>
                     <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>

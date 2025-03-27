@@ -35,20 +35,63 @@
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="MILESTONE_ID" DataSourceID="SqlDataSource1" Style="margin-bottom: 26px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                    <asp:BoundField DataField="MILESTONE_ID" HeaderText="MILESTONE_ID" ReadOnly="True" SortExpression="MILESTONE_ID" />
-                    <asp:BoundField DataField="MILESTONENAME" HeaderText="MILESTONENAME" SortExpression="MILESTONENAME" />
+                    <asp:TemplateField HeaderText="MILESTONE_ID" SortExpression="MILESTONE_ID">
+                        <EditItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("MILESTONE_ID") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("MILESTONE_ID") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="MILESTONENAME" SortExpression="MILESTONENAME">
+                        <EditItemTemplate>
+
+                            <asp:TextBox
+                                ID="TextBox3"
+                                runat="server"
+                                Text='<%# Bind("MILESTONENAME") %>'>
+                            </asp:TextBox>
+
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator1"
+                                runat="server"
+                                ControlToValidate="TextBox3"
+                                ErrorMessage="Milestone name is required."
+                                ForeColor="Red"
+                                Display="Dynamic">
+                            </asp:RequiredFieldValidator>
+                        </EditItemTemplate>
+
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("MILESTONENAME") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="MILESTONE_STARTDATE" SortExpression="MILESTONE_STARTDATE">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" Text='<%# Bind("MILESTONE_STARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"
+                                Text='<%# Bind("MILESTONE_STARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                ControlToValidate="TextBox1"
+                                ErrorMessage="Milestone Start Date is required."
+                                Display="Dynamic"
+                                ForeColor="Red" />
                         </EditItemTemplate>
+
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("MILESTONE_STARTDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="MILESTONE_ENDDATE" SortExpression="MILESTONE_ENDDATE">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("MILESTONE_ENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="TextBox2" runat="server"
+                                Text='<%# Bind("MILESTONE_ENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                                ControlToValidate="TextBox2"
+                                ErrorMessage="Milestone End Date is required."
+                                Display="Dynamic"
+                                ForeColor="Red" />
                         </EditItemTemplate>
+
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("MILESTONE_ENDDATE") %>'></asp:Label>
                         </ItemTemplate>
@@ -97,15 +140,39 @@
                 <InsertItemTemplate>
                     MILESTONE_ID:
     <asp:TextBox ID="MILESTONE_IDTextBox" runat="server" Text='<%# Bind("MILESTONE_ID") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator_MILESTONE_ID"
+                        runat="server"
+                        ControlToValidate="MILESTONE_IDTextBox"
+                        ErrorMessage="MILESTONE_ID is required."
+                        ForeColor="Red" />
                     <br />
                     MILESTONENAME:
     <asp:TextBox ID="MILESTONENAMETextBox" runat="server" Text='<%# Bind("MILESTONENAME") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator_MILESTONENAME"
+                        runat="server"
+                        ControlToValidate="MILESTONENAMETextBox"
+                        ErrorMessage="MILESTONENAME is required."
+                        ForeColor="Red" />
                     <br />
                     MILESTONE_STARTDATE:
     <asp:TextBox ID="MILESTONE_STARTDATETextBox" runat="server" Text='<%# Bind("MILESTONE_STARTDATE") %>' TextMode="Date" />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator_MILESTONE_STARTDATE"
+                        runat="server"
+                        ControlToValidate="MILESTONE_STARTDATETextBox"
+                        ErrorMessage="MILESTONE_STARTDATE is required."
+                        ForeColor="Red" />
                     <br />
                     MILESTONE_ENDDATE:
     <asp:TextBox ID="MILESTONE_ENDDATETextBox" runat="server" Text='<%# Bind("MILESTONE_ENDDATE") %>' TextMode="Date" />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator_MILESTONE_ENDDATE"
+                        runat="server"
+                        ControlToValidate="MILESTONE_ENDDATETextBox"
+                        ErrorMessage="MILESTONE_ENDDATE is required."
+                        ForeColor="Red" />
                     <br />
                     PROJECT_ID:
     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# Bind("PROJECT_ID") %>'>

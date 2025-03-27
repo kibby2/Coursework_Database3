@@ -36,25 +36,69 @@
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" ReadOnly="True" SortExpression="TASK_ID" />
-                    <asp:BoundField DataField="TASKNAME" HeaderText="TASKNAME" SortExpression="TASKNAME" />
+
+                    <asp:TemplateField HeaderText="TASKNAME" SortExpression="TASKNAME">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("TASKNAME") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator1"
+                                runat="server"
+                                ControlToValidate="TextBox3"
+                                ErrorMessage="TASK NAME is required"
+                                ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("TASKNAME") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="TASKSTARTDATE" SortExpression="TASKSTARTDATE">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("TASKSTARTDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator2"
+                                runat="server"
+                                ControlToValidate="TextBox1"
+                                ErrorMessage="TASK START DATE is required"
+                                ForeColor="Red" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("TASKSTARTDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="TASKENDDATE" SortExpression="TASKENDDATE">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("TASKENDDATE", "{0:MM-dd-yyyy}") %>' TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator3"
+                                runat="server"
+                                ControlToValidate="TextBox2"
+                                ErrorMessage="TASK END DATE is required"
+                                ForeColor="Red" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("TASKENDDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="TASKSTATUS" HeaderText="TASKSTATUS" SortExpression="TASKSTATUS" />
+
+                    <asp:TemplateField HeaderText="TASKSTATUS" SortExpression="TASKSTATUS">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("TASKSTATUS") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator4"
+                                runat="server"
+                                ControlToValidate="TextBox4"
+                                ErrorMessage="TASK STATUS is required"
+                                ForeColor="Red" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("TASKSTATUS") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" SortExpression="PROJECT_ID" />
+
                     <asp:TemplateField HeaderText="Project_Title">
                         <ItemTemplate>
                             <asp:DropDownList Enabled="false" ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# Bind("PROJECT_ID") %>'>
@@ -64,6 +108,7 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+
             <asp:FormView ID="FormView1" runat="server" DataKeyNames="TASK_ID" DataSourceID="SqlDataSource1">
                 <EditItemTemplate>
                     TASK_ID:
@@ -89,28 +134,59 @@
                 </EditItemTemplate>
                 <InsertItemTemplate>
                     TASK_ID:
-                    <asp:TextBox ID="TASK_IDTextBox" runat="server" Text='<%# Bind("TASK_ID") %>' />
+    <asp:TextBox ID="TASK_IDTextBox" runat="server" Text='<%# Bind("TASK_ID") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator5"
+                        runat="server"
+                        ControlToValidate="TASK_IDTextBox"
+                        ErrorMessage="TASK ID is required"
+                        ForeColor="Red" />
                     <br />
                     TASKNAME:
-                    <asp:TextBox ID="TASKNAMETextBox" runat="server" Text='<%# Bind("TASKNAME") %>' />
+    <asp:TextBox ID="TASKNAMETextBox" runat="server" Text='<%# Bind("TASKNAME") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator1"
+                        runat="server"
+                        ControlToValidate="TASKNAMETextBox"
+                        ErrorMessage="TASK NAME is required"
+                        ForeColor="Red" />
                     <br />
                     TASKSTARTDATE:
-                    <asp:TextBox ID="TASKSTARTDATETextBox" runat="server" Text='<%# Bind("TASKSTARTDATE") %>' TextMode="Date" />
+    <asp:TextBox ID="TASKSTARTDATETextBox" runat="server" Text='<%# Bind("TASKSTARTDATE") %>' TextMode="Date" />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator2"
+                        runat="server"
+                        ControlToValidate="TASKSTARTDATETextBox"
+                        ErrorMessage="TASK START DATE is required"
+                        ForeColor="Red" />
                     <br />
                     TASKENDDATE:
-                    <asp:TextBox ID="TASKENDDATETextBox" runat="server" Text='<%# Bind("TASKENDDATE") %>' TextMode="Date" />
+    <asp:TextBox ID="TASKENDDATETextBox" runat="server" Text='<%# Bind("TASKENDDATE") %>' TextMode="Date" />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator3"
+                        runat="server"
+                        ControlToValidate="TASKENDDATETextBox"
+                        ErrorMessage="TASK END DATE is required"
+                        ForeColor="Red" />
                     <br />
                     TASKSTATUS:
-                    <asp:TextBox ID="TASKSTATUSTextBox" runat="server" Text='<%# Bind("TASKSTATUS") %>' />
+    <asp:TextBox ID="TASKSTATUSTextBox" runat="server" Text='<%# Bind("TASKSTATUS") %>' />
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator4"
+                        runat="server"
+                        ControlToValidate="TASKSTATUSTextBox"
+                        ErrorMessage="TASK STATUS is required"
+                        ForeColor="Red" />
                     <br />
                     PROJECT_ID:
-                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# Bind("PROJECT_ID") %>'>
-                    </asp:DropDownList>
+    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# Bind("PROJECT_ID") %>'>
+    </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECT_ID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
                     <br />
                     <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                     &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                 </InsertItemTemplate>
+
                 <ItemTemplate>
                     <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>

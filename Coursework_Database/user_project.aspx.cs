@@ -18,5 +18,10 @@ namespace Coursework_Database
         {
 
         }
+
+        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

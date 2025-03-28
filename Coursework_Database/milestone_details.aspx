@@ -96,16 +96,28 @@
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("MILESTONE_ENDDATE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" SortExpression="PROJECT_ID" />
-                    <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" SortExpression="TASK_ID" />
+
+                    <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" SortExpression="PROJECT_ID" ReadOnly="True"/>
+                    <asp:BoundField DataField="TASK_ID" HeaderText="TASK_ID" SortExpression="TASK_ID" ReadOnly="True"/>
+
                     <asp:TemplateField HeaderText="Project_Name">
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource01" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# BIND("PROJECT_ID") %>'>
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource01" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECT_ID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
+                        </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:DropDownList Enabled="false" ID="DropDownList3" runat="server" DataSourceID="SqlDataSource2" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID">
+                            <asp:DropDownList Enabled="False" ID="DropDownList3" runat="server" DataSourceID="SqlDataSource2" DataTextField="PROJECTNAME" DataValueField="PROJECT_ID" SelectedValue='<%# BIND("PROJECT_ID") %>'>
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;PROJECT_ID&quot;, &quot;PROJECTNAME&quot; FROM &quot;PROJECTS&quot;"></asp:SqlDataSource>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Task_Name">
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="DropDownList6" runat="server" DataSourceID="SqlDataSource02" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# BIND("TASK_ID") %>'>
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource02" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;TASK_ID&quot;, &quot;TASKNAME&quot; FROM &quot;TASKS&quot;"></asp:SqlDataSource>
+                        </EditItemTemplate>
                         <ItemTemplate>
                             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT &quot;TASK_ID&quot;, &quot;TASKNAME&quot; FROM &quot;TASKS&quot;"></asp:SqlDataSource>
                             <asp:DropDownList Enabled="false" ID="DropDownList4" runat="server" DataSourceID="SqlDataSource3" DataTextField="TASKNAME" DataValueField="TASK_ID" SelectedValue='<%# Bind("TASK_ID") %>'>
